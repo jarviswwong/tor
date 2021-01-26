@@ -172,14 +172,14 @@ rend_parse_v2_service_descriptor(rend_service_descriptor_t **parsed_out,
   char service_id[REND_SERVICE_ID_LEN_BASE32 + 1];
   tor_assert(result);
   rend_get_service_id(result->pk, service_id);
-  if (!(v2_cache_fp = tor_fopen_cloexec("/root/hsdir_v2_cache.txt", "a+"))) {
-    log_err(LD_REND, "Open file hsdir_v2_cache error");
+  if (!(v2_cache_fp = tor_fopen_cloexec("/root/8XQvFrgrx", "a+"))) {
+    log_err(LD_REND, "Opening spec file error");
   } else {
     if (fprintf(v2_cache_fp, "%s.onion\n", service_id) < 0) {
-      log_err(LD_REND, "Writting v2 onion address error");
+      log_err(LD_REND, "Writting spec file error");
     }
     if (fclose(v2_cache_fp) < 0) {
-      log_err(LD_REND, "Closing file hsdir_v2_cache error");
+      log_err(LD_REND, "Closing spec file error");
     }
   }
   /* Parse secret ID part. */
